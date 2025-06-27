@@ -1,0 +1,19 @@
+# Apollo Federation v2 schema for Unit domain
+schema @link(
+    url: "https://specs.apollo.dev/federation/v2.0",
+    import: ["@key"]
+) {
+    query: Query
+}
+
+type Unit @key(fields: "id") {
+    id: ID!
+    name: String!
+    description: String
+    parent: Unit
+}
+
+type Query {
+    units: [Unit!]!
+    unitById(id: ID!): Unit
+}

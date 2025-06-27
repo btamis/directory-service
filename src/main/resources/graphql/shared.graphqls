@@ -1,0 +1,7 @@
+# Shared type definitions across multiple services
+type Error {
+    code: String!
+    message: String!
+}
+
+scalar DateTime
