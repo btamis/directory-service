@@ -1,11 +1,3 @@
-# Apollo Federation v2 schema for Unit domain
-schema @link(
-    url: "https://specs.apollo.dev/federation/v2.0",
-    import: ["@key"]
-) {
-    query: Query
-}
-
 type Unit @key(fields: "id") {
     id: ID!
     name: String!
@@ -13,7 +5,17 @@ type Unit @key(fields: "id") {
     parent: Unit
 }
 
-type Query {
+input UnitInput {
+    name: String!
+    description: String
+    parent: ID
+}
+
+extend type Query {
     units: [Unit!]!
     unitById(id: ID!): Unit
+}
+
+extend type Mutation {
+    createUnit(unit: UnitInput!): Unit
 }

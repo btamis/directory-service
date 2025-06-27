@@ -1,6 +1,7 @@
 package com.btamis.directoryservice.unit;
 
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -28,5 +29,11 @@ public class UnitResolvers {
     @SchemaMapping(typeName = "Unit", field = "parent")
     public Unit parent(Unit unit) {
         return unit.getParent();
+    }
+
+    @MutationMapping
+    public Unit createUnit(@Argument Unit unit) {
+        System.out.println(unit);
+        return unitRepo.save(unit);
     }
 }
